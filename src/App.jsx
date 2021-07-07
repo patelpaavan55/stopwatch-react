@@ -28,7 +28,6 @@ function App() {
   const [stopTime, setStopTime] = useState(0);
   const [overallTime, setOverallTime] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [isLapDisabled, setIsLapDisabled] = useState(true);
 
   function handleStartStop() {
     if (!isRunning) {
@@ -41,12 +40,16 @@ function App() {
     }
   }
 
+  let lapList = undefined;
+  function runLapLogic(currentLapButtonPressedTimeStamp = Date.now()) {}
+
   function handleLapReset() {
-    const lapResetState = isRunning || isLapDisabled ? LAP_TEXT : RESET_TEXT;
+    const lapResetState = isRunning || !startTime ? LAP_TEXT : RESET_TEXT;
     if (lapResetState === LAP_TEXT) {
       console.log("THis is the Lap State........." + lapResetState);
+      runLapLogic();
     } else if (lapResetState === RESET_TEXT) {
-      setIsLapDisabled(true);
+      // setIsLapDisabled(true);
       setCurrentTime(0);
       setStartTime(0);
       setStopTime(0);
@@ -54,6 +57,8 @@ function App() {
       setOverallTime(0);
     }
   }
+
+  // Sec 13, 18, 23
 
   useEffect(() => {
     console.log("Stoptime: " + stopTime);
@@ -64,12 +69,6 @@ function App() {
   useEffect(() => {
     console.log("Overalltime: " + overallTime);
   }, [overallTime]);
-
-  useEffect(() => {
-    if (isRunning) {
-      setIsLapDisabled(false);
-    }
-  }, [isRunning]);
 
   useEffect(() => {
     let intervalId;
@@ -103,10 +102,10 @@ function App() {
           <div className='timer-control-buttons'>
             <button
               className='btn-lap-reset round-button gray'
-              disabled={isLapDisabled}
+              disabled={!startTime}
               onClick={handleLapReset}
             >
-              {isRunning || isLapDisabled ? LAP_TEXT : RESET_TEXT}
+              {isRunning || !startTime ? LAP_TEXT : RESET_TEXT}
             </button>
             <button
               className={`btn-start-stop round-button ${
@@ -117,7 +116,9 @@ function App() {
               {isRunning ? STOP_TEXT : START_TEXT}
             </button>
           </div>
-          <ul className='laps-container'></ul>
+          <ul className='laps-container'>
+            <li className='top'>{}</li>
+          </ul>
         </div>
       </div>
     </div>
