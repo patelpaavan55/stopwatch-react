@@ -1,42 +1,184 @@
+/* @font-face {
+  font-family: "Helevetica Neue UltraLight";
+  src: url(./fonts/Helvetica-Neue-UltraLight.ttf) format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helevetica Neue Thin";
+  src: url(./fonts/helveticaneue-thin.ttf) format('truetype');
+  font-style: normal;
+}
+@font-face {
+  font-family: "San Francisco Display Ultralight";
+  src: url(./fonts/SFProDisplay-Ultralight.ttf) format('truetype');
+  font-style: normal;
+} */
+
+@font-face {
+  font-family: "San Francisco Regular";
+  src: url(./fonts/SanFranciscoDisplayRegular.ttf) format("truetype");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "My Font Ultralight";
+  src: url(./fonts/MyFont-UltraLight.otf) format("opentype");
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --green: #2ed158;
+  --dark-green: #082a11;
+  --darker-green: #041708;
+  --red: #ff453a;
+  --dark-red: #320e0b;
+  --darker-red: #1a0806;
+  --disabled-gray: #98989f;
+  --diasbled-dark-gray: #1c1c1d;
+  --gray: #f2f2f2;
+  --dark-gray: #353535;
+  --darker-gray: #1c1c1d;
+  --russian-black: #202022;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.layout-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  background-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.timer-display {
   color: white;
+  margin-top: 60px;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 44px;
+  font-weight: 100;
+  /* font-family: "Helevetica Neue UltraLight"; */
+  font-family: "My Font Ultralight";
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
-.App-link {
-  color: #61dafb;
+.timer-control-buttons {
+  display: flex;
+  align-self: stretch;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.round-button {
+  display: block;
+  width: 37px;
+  height: 37px;
+  border: 1.5px solid black;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 8px;
+  color: red;
+  background: white;
+  box-shadow: 0 0 1px 1.5px greenyellow;
+  font-family: "San Francisco Regular";
 }
 
-button {
-  font-size: calc(10px + 2vmin);
+.round-button:hover {
+  background: purple;
+  box-shadow: 0 0 1px 1.5px gray;
+}
+
+.round-button:disabled {
+  color: var(--disabled-gray);
+  background: var(--diasbled-dark-gray);
+  box-shadow: 0 0 1px 1.5px var(--diasbled-dark-gray);
+}
+
+.green {
+  color: var(--green);
+  background: var(--dark-green);
+  box-shadow: 0 0 1px 1.5px var(--dark-green);
+}
+
+.green:hover {
+  background: var(--darker-green);
+  box-shadow: 0 0 1px 1.5px var(--darker-green);
+}
+
+.red {
+  color: var(--red);
+  background: var(--dark-red);
+  box-shadow: 0 0 1px 1.5px var(--dark-red);
+}
+
+.red:hover {
+  background: var(--darker-red);
+  box-shadow: 0 0 1px 1.5px var(--darker-red);
+}
+
+.gray {
+  color: var(--gray);
+  background: var(--dark-gray);
+  box-shadow: 0 0 1px 1.5px var(--dark-gray);
+}
+
+.gray:hover {
+  background: var(--darker-gray);
+  box-shadow: 0 0 1px 1.5px var(--darker-gray);
+}
+
+.laps-container {
+  height: 150px;
+  width: 180px;
+  overflow-y: auto;
+  padding: 10px;
+  list-style-type: none;
+}
+
+.lap-item {
+  color: white;
+  font-size: 13px;
+  align-content: stretch;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 10px;
+  border-bottom: 1px solid var(--russian-black);
+  font-family: "Helevetica Neue Thin";
+  min-height: 16.43px;
+}
+
+.shortestLap {
+  color: var(--green);
+}
+
+.longestLap {
+  color: var(--red);
+}
+
+.lap-item p {
+  margin: 0;
 }
